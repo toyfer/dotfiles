@@ -3,22 +3,22 @@
 theme = "dark_plus"
 
 [editor]
-line-number = "realtive"
-true-color = "true"
+line-number = "relative"
+true-color = true
 rulers = [80]
-color-modes = "true"
+color-modes = true
 popup-border = "all"
 
 [editor.statusline]
 left = ["mode", "spinner", "version-control"]
 center = ["file-name"]
-right = ["diganostics", "selections", "position", "file-encoding", "file-line-encoding", "file-type"]
+right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
 separator = "|"
 
 [editor.lsp]
-display-messagees = "true"
-display-inlay-hints = "true"
-snippets = "true"
+display-messages = true
+display-inlay-hints = true
+snippets = true
 
 
 [editor.cursor-shape]
