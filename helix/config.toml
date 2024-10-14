@@ -1,11 +1,15 @@
 # https://docs.helix-editor.com/editor.html
 
-theme = "dark_plus"
+# darktheme
+theme = "ayu_mirage"
+
+# whitetheme
+# theme = "zed_onelight"
 
 [editor]
-line-number = "relative"
+# line-number = "relative"
 true-color = true
-rulers = [80]
+# rulers = [80]
 color-modes = true
 popup-border = "all"
 
@@ -14,6 +18,9 @@ left = ["mode", "spinner", "version-control"]
 center = ["file-name"]
 right = ["diagnostics", "selections", "position", "file-encoding", "file-line-ending", "file-type"]
 separator = "|"
+mode.normal = "NORMAL$"
+mode.insert = "INSERT>"
+mode.select = "SELECT_"
 
 [editor.lsp]
 display-messages = true
@@ -28,3 +35,9 @@ select = "underline"
 
 [editor.soft-wrap]
 enable = true
+
+# [keys.normal]
+# "space" = { w = ":write", q = ":quit" }
+
+[keys.insert]
+j = {j = "normal_mode"}
