@@ -1,0 +1,16 @@
+[shell]
+program = "pwsh"
+
+[window]
+decorations = "Full"
+opacity = 0.9
+
+[font]
+normal {family = "UDEV Gothic 35NF"}
+size = 12
+
+[selection]
+save_to_clipboard = true
+
+[cursor]
+style = {shape = "UnderLine"}
