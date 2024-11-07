@@ -1,0 +1,10 @@
+{
+    "apppaths": {
+        "hx": "/helix/hx.exe",
+        "ffmpeg": "/ffmpeg/bin/ffmpeg.exe",
+        "nu": "/nushell/nu.exe",
+        "nvim": "/nvim/bin/nvim.exe",
+        "qpdf": "/qpdf/bin/qpdf.exe",
+        "qsvenc": "qsvenc/QSVEncC/x64/QSVEncC64.exe"
+    }
+}
