@@ -1,0 +1,33 @@
+[user]
+	# Replace with your actual name and email
+	name = Your Name
+	email = your.email@example.com
+
+[core]
+	editor = vim
+	autocrlf = input
+
+[push]
+	default = simple
+
+[pull]
+	rebase = false
+
+[alias]
+	st = status
+	co = checkout
+	br = branch
+	ci = commit
+	up = pull --rebase
+	log1 = log --oneline
+	graph = log --graph --pretty=format:'%C(yellow)%h%Creset -%C(red)%d%Creset %s %C(green)(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+[color]
+	ui = auto
+
+[diff]
+	tool = vimdiff
+
+[merge]
+	tool = vimdiff
+

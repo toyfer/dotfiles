@@ -1,0 +1,14 @@
+inoremap jk <esc>
+syntax on
+set number
+set tabstop=4
+set shiftwidth=4
+set autoindent
+set smartindent
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set clipboard=unnamedplus
+set mouse=a
+colorscheme desert

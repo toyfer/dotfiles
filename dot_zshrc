@@ -1,0 +1,39 @@
+# ~/.zshrc - Zsh configuration file
+
+# Set up the prompt
+autoload -Uz promptinit
+prompinit
+prompt adam1
+
+# Use modern completion system
+autoload -Uz compinit
+compinit
+
+# History settings
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
+
+# Enable history search
+bindkey '^R' history-incremental-search-backward
+
+# Aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias grep='grep --color=auto'
+
+# Environment variables
+export EDITOR=vim
+export CLICOLOR=1
+
+# Homebrew completions
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+fi
+
+# Load any local customizations
+if [[ -f ~/.zshrc.local ]]; then
+  source ~/.zshrc.local
+fi
+
