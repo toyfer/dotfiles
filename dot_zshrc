@@ -1,4 +1,22 @@
-# ~/.zshrc - Zsh configuration file
+# ~/.zshrc - Zsh configuration file for macOS
+# 🍎 Optimized for macOS development workflow
+
+# =============================================================================
+# macOS System Integration
+# =============================================================================
+
+# Homebrew setup (macOS package manager)
+if [[ -f "/opt/homebrew/bin/brew" ]]; then
+    # Apple Silicon Macs
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -f "/usr/local/bin/brew" ]]; then
+    # Intel Macs
+    eval "$(/usr/local/bin/brew shellenv)"
+fi
+
+# =============================================================================
+# Shell Configuration
+# =============================================================================
 
 # Set up the prompt
 autoload -Uz promptinit
@@ -10,30 +28,117 @@ autoload -Uz compinit
 compinit
 
 # History settings
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 HISTFILE=~/.zsh_history
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_SAVE_NO_DUPS
+setopt SHARE_HISTORY
 
 # Enable history search
 bindkey '^R' history-incremental-search-backward
+bindkey '^[[A' history-search-backward
+bindkey '^[[B' history-search-forward
 
-# Aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias grep='grep --color=auto'
+# =============================================================================
+# macOS-specific Environment Variables
+# =============================================================================
 
-# Environment variables
-export EDITOR=vim
+export EDITOR=nvim
+export VISUAL=nvim
 export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
+
+# macOS color support for ls
+alias ls='ls -G'
+
+# =============================================================================
+# Aliases
+# =============================================================================
+
+# Enhanced ls aliases for macOS
+alias ll='ls -alFG'
+alias la='ls -AG'
+alias l='ls -CFG'
+alias lt='ls -altrG'  # Sort by time, newest last
+
+# macOS specific aliases
+alias finder='open -a Finder'
+alias preview='open -a Preview'
+alias code='code .'
+alias brewup='brew update && brew upgrade && brew cleanup'
+
+# Git aliases
+alias gst='git status'
+alias gco='git checkout'
+alias gp='git push'
+alias gl='git pull'
+alias ga='git add'
+alias gc='git commit'
+
+# Grep with color
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# Network utilities
+alias ip='curl -s https://checkip.amazonaws.com/'
+alias localip='ipconfig getifaddr en0'
+
+# =============================================================================
+# Tool Integrations
+# =============================================================================
 
 # Homebrew completions
 if type brew &>/dev/null; then
-  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+    FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+    autoload -Uz compinit
+    compinit
 fi
 
-# Load any local customizations
+# GitHub CLI completions
+if command -v gh &> /dev/null; then
+    eval "$(gh completion -s zsh)"
+fi
+
+# =============================================================================
+# Functions
+# =============================================================================
+
+# Quick directory navigation
+function mkcd() {
+    mkdir -p "$1" && cd "$1"
+}
+
+# Extract various archive formats
+function extract() {
+    if [ -f "$1" ]; then
+        case "$1" in
+            *.tar.bz2) tar xjf "$1" ;;
+            *.tar.gz) tar xzf "$1" ;;
+            *.bz2) bunzip2 "$1" ;;
+            *.rar) unrar x "$1" ;;
+            *.gz) gunzip "$1" ;;
+            *.tar) tar xf "$1" ;;
+            *.tbz2) tar xjf "$1" ;;
+            *.tgz) tar xzf "$1" ;;
+            *.zip) unzip "$1" ;;
+            *.Z) uncompress "$1" ;;
+            *.7z) 7z x "$1" ;;
+            *) echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+
+# =============================================================================
+# Local Customizations
+# =============================================================================
+
+# Load any local customizations (not synced with dotfiles)
 if [[ -f ~/.zshrc.local ]]; then
-  source ~/.zshrc.local
+    source ~/.zshrc.local
 fi
-
