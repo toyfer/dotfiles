@@ -1,7 +1,3 @@
-# macOS Dotfiles - Homebrew Bundle
-# 🍎 Package definitions for macOS development environment
-# Install with: brew bundle install
-
 tap "homebrew/bundle"
 # Manage your dotfiles across multiple diverse machines, securely
 brew "chezmoi"
