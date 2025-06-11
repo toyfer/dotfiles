@@ -20,7 +20,7 @@ fi
 
 # Set up the prompt
 autoload -Uz promptinit
-prompinit
+promptinit
 prompt adam1
 
 # Use modern completion system
