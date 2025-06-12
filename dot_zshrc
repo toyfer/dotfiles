@@ -142,3 +142,21 @@ function extract() {
 if [[ -f ~/.zshrc.local ]]; then
     source ~/.zshrc.local
 fi
+alias ls="eza"
+alias ll="eza -l --git"
+alias la="eza -la --git"
+alias tree="eza --tree"
+
+# Modern CLI tools
+alias cat="bat"
+alias find="fd"
+alias grep="rg"
+
+# fzf shell integration
+source <(fzf --zsh)
+
+# zoxide integration
+eval "$(zoxide init zsh)"
+alias cd="z"
+alias cdi="zi"  # interactive directory selection
+
